@@ -5,6 +5,7 @@
 // @author      Edwin Zarco
 // @description Alphabetically sorts the channels in the channel grid
 // @license     AGPL-3.0
+// @namespace https://greasyfork.org/users/1033981
 // ==/UserScript==
 
 (function() {
