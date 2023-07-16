@@ -1,18 +1,29 @@
 // ==UserScript==
-// @name        DaddyLiveHD Alphabetical Sorting
-// @match       https://*.daddylivehd.sx/*
-// @version     1.0
-// @author      Edwin Zarco
-// @description Alphabetically sorts the channels in the channel grid
-// @license     AGPL-3.0
-// @namespace   https://greasyfork.org/users/1033981
+// @name         DaddyLiveHD Alphabetical Sorting
+// @namespace    https://greasyfork.org/users/1033981
+// @version      1.1
+// @description  Alphabetically sorts the channels in the channel grid
+// @license      AGPL-3.0
+// @author       Edwin Zarco
+// @match        https://*.daddylivehd.sx/*
 // ==/UserScript==
 
-(function () {
-    'use strict';
+(function() {
+  'use strict';
 
+  const sortChannelsAlphabetically = () => {
     const gridContainer = document.querySelector('.grid-container');
+    if (!gridContainer) {
+      return;
+    }
+
     const gridItems = Array.from(gridContainer.querySelectorAll('.grid-item'));
     gridItems.sort((a, b) => a.textContent.localeCompare(b.textContent));
-    gridItems.forEach((item) => gridContainer.appendChild(item));
+
+    for (const item of gridItems) {
+      gridContainer.appendChild(item);
+    }
+  };
+
+  sortChannelsAlphabetically();
 })();
