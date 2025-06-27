@@ -1,29 +1,34 @@
 // ==UserScript==
 // @name         DaddyLiveHD Alphabetical Sorting
 // @namespace    https://greasyfork.org/users/1033981
-// @version      1.2
+// @version      1.3
 // @description  Alphabetically sorts the channels in the channel grid
 // @license      AGPL-3.0
 // @author       Edwin Zarco
-// @match        https://*.dlhd.sx/*
+// @match        https://*.thedaddy.click/*
 // ==/UserScript==
 
-(function() {
-  'use strict';
+(function () {
+    'use strict';
 
-  const sortChannelsAlphabetically = () => {
-    const gridContainer = document.querySelector('.grid-container');
-    if (!gridContainer) {
-      return;
+    function sort_channels_alphabetically()
+    {
+        const grid_container = document.querySelector('.grid-container');
+
+        if (!grid_container)
+            return;
+
+        const grid_items = Array.from(
+            grid_container.querySelectorAll('.grid-item')
+        );
+
+        grid_items.sort(function (a, b) {
+            return a.textContent.localeCompare(b.textContent);
+        });
+
+        for (let i = 0; i < grid_items.length; i++)
+            grid_container.appendChild(grid_items[i]);
     }
 
-    const gridItems = Array.from(gridContainer.querySelectorAll('.grid-item'));
-    gridItems.sort((a, b) => a.textContent.localeCompare(b.textContent));
-
-    for (const item of gridItems) {
-      gridContainer.appendChild(item);
-    }
-  };
-
-  sortChannelsAlphabetically();
+    sort_channels_alphabetically();
 })();
