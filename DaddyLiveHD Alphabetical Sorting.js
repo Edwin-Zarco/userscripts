@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         DaddyLiveHD Alphabetical Sorting
 // @namespace    https://greasyfork.org/users/1033981
-// @version      1.3
+// @version      1.4
 // @description  Alphabetically sorts the channels in the channel grid
 // @license      AGPL-3.0
 // @author       Edwin Zarco
