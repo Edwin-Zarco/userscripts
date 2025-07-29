@@ -5,7 +5,7 @@
 // @description  Alphabetically sorts the channels in the channel grid
 // @license      AGPL-3.0
 // @author       Edwin Zarco
-// @match        https://*.thedaddy.click/*
+// @match        https://*.dlhd.click/*
 // ==/UserScript==
 
 (function () {
