@@ -1,34 +1,45 @@
 // ==UserScript==
 // @name         DaddyLiveHD Alphabetical Sorting
 // @namespace    https://greasyfork.org/users/1033981
-// @version      1.4
+// @version      2.0
 // @description  Alphabetically sorts the channels in the channel grid
 // @license      AGPL-3.0
 // @author       Edwin Zarco
-// @match        https://*.dlhd.click/*
+// @match        https://*.dlive.sx/*
 // ==/UserScript==
 
-(function () {
-    'use strict';
+(function() {
+	"use strict";
 
-    function sort_channels_alphabetically()
-    {
-        const grid_container = document.querySelector('.grid-container');
+	/*
+	 * sortChannels - reorder card elements alphabetically by data-title.
+	 * Returns early if no cards found.
+	 */
+	function sortChannels() {
+		const cards = Array.from(document.querySelectorAll('a.card'));
 
-        if (!grid_container)
-            return;
+		if (cards.length === 0)
+			return;
 
-        const grid_items = Array.from(
-            grid_container.querySelectorAll('.grid-item')
-        );
+		const parent = cards[0].parentNode;
 
-        grid_items.sort(function (a, b) {
-            return a.textContent.localeCompare(b.textContent);
-        });
+		/* Sort by data-title attribute (case-insensitive) */
+		cards.sort((a, b) => {
+			const aTitle = a.getAttribute('data-title').toLowerCase();
+			const bTitle = b.getAttribute('data-title').toLowerCase();
 
-        for (let i = 0; i < grid_items.length; i++)
-            grid_container.appendChild(grid_items[i]);
-    }
+			return aTitle.localeCompare(bTitle);
+		});
 
-    sort_channels_alphabetically();
+		/* Reorder elements in DOM */
+		cards.forEach(card => {
+			parent.appendChild(card);
+		});
+	}
+
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', sortChannels);
+	} else {
+		sortChannels();
+	}
 })();
