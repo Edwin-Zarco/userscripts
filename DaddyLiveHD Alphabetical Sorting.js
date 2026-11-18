@@ -1,11 +1,11 @@
 // ==UserScript==
 // @name         DaddyLiveHD Alphabetical Sorting
 // @namespace    https://greasyfork.org/users/1033981
-// @version      2.0
+// @version      2.1
 // @description  Alphabetically sorts the channels in the channel grid
 // @license      AGPL-3.0
 // @author       Edwin Zarco
-// @match        https://*.dlive.sx/*
+// @match        https://*.thedaddy.li/*
 // ==/UserScript==
 
 (function() {
